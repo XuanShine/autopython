@@ -112,12 +112,48 @@ def ring_door_bell():
     job_thread.start()
     return schedule.CancelJob
 
+def admin_door():
+    """<state> can be "open" or "close"
+    If state not set, it will be default setting """
+    pyaccess_abs_path = os.path.join(C, "PyAccess")
+    g = git.cmd.Git(wubook_abs_path)
+    sys.path.append(wubook_abs_path)
+    from PyAccess import lock_door
+
+    def wrapper(state=None:str):
+        logging.info(f"Fonction admin_door({state}) en cours d’exécution")
+        try:
+            pull_result = g.pull()
+            if pull_result != 'Already up to date.':
+                [reload(module) for module in list(sys.modules.values())[::-1] if "PyAccess" in str(module)]
+                logging.info("Changed in PyAccess code. PyAccess’s modules reloaded.")
+
+        except GitCommandError as e:
+            logging.warning(f"Git not accessible, the function continue: {e}")
+
+        if state == "open":
+            lock_door.open_door()
+        elif state == "close":
+            lock_door.close_door()
+        else:
+            lock_door.main()
+
+    return wrapper
+
 
 try:
-    jobs["update_price_wubook"] = schedule.every().hour.do(update_price_wubook(), 360)
+    with open(os.path.join(C, "..", "RPI_ID"), "r") as f_in:
+        RPI_ID = f_in.read().strip()
+    
     jobs["live_exec"] = schedule.every().minute.do(live_exec)
-    t_plus_2 = (datetime.now() + timedelta(minutes=2)).strftime("%H:%M")
-    jobs["ring_door_bell"] = schedule.every().day.at(t_plus_2).do(ring_door_bell)
+
+    if RPI_ID == "entry":
+        jobs["admin_door"] = schedule.every().hour.do(admin_door())
+    else:
+        jobs["update_price_wubook"] = schedule.every().hour.do(update_price_wubook(), 360)
+    
+        t_plus_2 = (datetime.now() + timedelta(minutes=2)).strftime("%H:%M")
+        jobs["ring_door_bell"] = schedule.every().day.at(t_plus_2).do(ring_door_bell)
 
     logging.info("Les taches démarrent")
     while True:
