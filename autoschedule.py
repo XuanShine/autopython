@@ -41,7 +41,7 @@ def live_exec():
                 code = f_in.read()
             try:
                 exec(code)
-            except Exception:
+            except Exception as e:
                 import traceback
                 logging.error(f"ERROR live evaluating: {file}\n{traceback.format_exc()}")
                 os.rename(os.path.join(current_file_directory, file),
@@ -116,11 +116,12 @@ def admin_door():
     """<state> can be "open" or "close"
     If state not set, it will be default setting """
     pyaccess_abs_path = os.path.join(C, "PyAccess")
-    g = git.cmd.Git(wubook_abs_path)
-    sys.path.append(wubook_abs_path)
-    from PyAccess import lock_door
+    g = git.cmd.Git(pyaccess_abs_path)
+    sys.path.append(pyaccess_abs_path)
+    
 
-    def wrapper(state=None:str):
+    def wrapper(state:str=None):
+        from PyAccess import lock_door
         logging.info(f"Fonction admin_door({state}) en cours d’exécution")
         try:
             pull_result = g.pull()
@@ -149,7 +150,7 @@ try:
 
     if RPI_ID == "entry":
         jobs["admin_door"] = schedule.every().hour.do(admin_door())
-    else:
+    elif RPI_ID == "main_rpi":
         jobs["update_price_wubook"] = schedule.every().hour.do(update_price_wubook(), 360)
     
         t_plus_2 = (datetime.now() + timedelta(minutes=2)).strftime("%H:%M")
