@@ -1,6 +1,8 @@
 import sys, os
+<<<<<<< HEAD
 
 C = os.path.abspath(os.path.dirname(__file__))
+
 pyaccess_abs_path = os.path.join(C, "PyAccess")
 sys.path.append(pyaccess_abs_path)
 
