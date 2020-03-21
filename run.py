@@ -1,5 +1,4 @@
 import sys, os
-<<<<<<< HEAD
 
 C = os.path.abspath(os.path.dirname(__file__))
 
