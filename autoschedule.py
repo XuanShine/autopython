@@ -27,6 +27,7 @@ logging.getLogger("urllib3.connectionpool").setLevel(logging.WARNING + 10)
 
 jobs = dict()
 
+# Todo: autoreload
 
 def live_exec():
 	"You can add jobs on the fly"
