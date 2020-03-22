@@ -1,18 +1,16 @@
-import sys
-import os
-import time
-
+import sys, os, time
 C = os.path.abspath(os.path.dirname(__file__))
-
 
 from flask import Flask
 from .pyaccess_server import pyaccess
+from .pywubook_sever import pywubook
 
 app = Flask(__name__)
-
 app.register_blueprint(pyaccess)
+app.register_blueprint(pywubook)
 
 
+# schedule
 import schedule
 from threading import Thread
 
