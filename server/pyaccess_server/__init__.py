@@ -1,7 +1,7 @@
 from flask import Blueprint
 import schedule
 
-pyaccess = Blueprint("pyaccess", __name__)
+pyaccess = Blueprint("pyaccess", __name__, url_prefix="/pyaccess")
 
 from . import views
 

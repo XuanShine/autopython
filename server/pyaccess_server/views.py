@@ -14,16 +14,17 @@ tasks = dict()
 hour_on_off = ["07", "22"]
 
 
-app = pyaccess
+@pyaccess.route("/help")
+def help():
+    return """/set_state/<state>/<wait_time> : state can be 'on' or 'off'
+    "/get_state" 
+    "/get_state_hour"
+    "/set_state_hour/<state>/<string:hour>" : state : "on" or "off"; set new hour on or new hour off
+    """
 
-@app.route('/exemple')
-def hello():
-    name = request.args.get("name", "World")
-    return f'Hello, {escape(name)}!'
-
-@app.route('/set_state/<state>/<wait_time>')
+@pyaccess.route('/set_state/<state>/<wait_time>')
 def set_state(state: str, wait_time=3600):
-    """state can be 'on' on 'off' """
+    """state can be 'on' or 'off' """
     if state == "on":
         open_door()
     else:
@@ -43,11 +44,11 @@ def set_state(state: str, wait_time=3600):
     t2 = Thread(target=restart_jobs, daemon=True)
     t2.start()
 
-@app.route("/get_state")
+@pyaccess.route("/get_state")
 def get_state():
     return "open" if is_open() else "close"
 
-@app.route("/set_state_hour/<state>/<string:hour>")
+@pyaccess.route("/set_state_hour/<state>/<string:hour>")
 def set_state_hour(state, hour):
     """
     <state> : "on" "off" "auto" 
@@ -76,7 +77,7 @@ def set_state_hour(state, hour):
 
     return f"Heures ouvert, fermé: {hour_on_off}"
 
-@app.route("/get_state_hour")
+@pyaccess.route("/get_state_hour")
 def get_state_hour():
     """
     RETURN: { "on" : <int>

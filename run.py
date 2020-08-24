@@ -6,19 +6,24 @@ logging.basicConfig(filename=os.path.join(C, "run_server.log"), level=logging.DE
 
 from server.views import app
 
-with open(os.path.join("..", "RPI_ID"), "r") as f_in:
-    RPI_ID = f_in.read().strip()
+try:
+    with open(os.path.join("..", "RPI_ID"), "r") as f_in:
+        RPI_ID = f_in.read().strip()
+except FileNotFoundError:
+    RPI_ID = "undefined"
+
+# TODO: télécharger les fichiers nécessaires.
 
 if RPI_ID == "entry":
     pyaccess_abs_path = os.path.join(C, "PyAccess")
-    pywubook_abs_path = os.path.join(C, "PyWubook")
     sys.path.append(pyaccess_abs_path)
-    sys.path.append(pywubook_abs_path)
-
     from server.pyaccess_server import pyaccess
-    from server.pywubook_sever import pywubook
-    app.register_blueprint(pyaccess)
-    app.register_blueprint(pywubook)
+    app.register_blueprint(pyaccess, url_prefix="/pyaccess")
+
+    # pywubook_abs_path = os.path.join(C, "PyWubook")
+    # sys.path.append(pywubook_abs_path)
+    # from server.pywubook_sever import pywubook
+    # app.register_blueprint(pywubook)
 elif RPI_ID == "ring":
     pydoorbird_abs_path = os.path.join(C, "PyDoorbird")
     sys.path.append(pydoorbird_abs_path)
