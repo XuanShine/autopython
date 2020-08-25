@@ -20,10 +20,10 @@ if RPI_ID == "entry":
     from server.pyaccess_server import pyaccess
     app.register_blueprint(pyaccess, url_prefix="/pyaccess")
 
-    # pywubook_abs_path = os.path.join(C, "PyWubook")
-    # sys.path.append(pywubook_abs_path)
-    # from server.pywubook_sever import pywubook
-    # app.register_blueprint(pywubook)
+    pywubook_abs_path = os.path.join(C, "PyWubook")
+    sys.path.append(pywubook_abs_path)
+    from server.pywubook_sever import pywubook
+    app.register_blueprint(pywubook)
 elif RPI_ID == "ring":
     pydoorbird_abs_path = os.path.join(C, "PyDoorbird")
     sys.path.append(pydoorbird_abs_path)
