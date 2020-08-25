@@ -7,4 +7,4 @@ schedule
 texttable==1.6.2
 virtualenv==16.7.5
 flask
-flask-sqlachemy
+flask-sqlalchemy
