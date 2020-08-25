@@ -7,7 +7,7 @@ logging.basicConfig(filename=os.path.join(C, "run_server.log"), level=logging.DE
 from server.views import app
 
 try:
-    with open(os.path.join("..", "RPI_ID"), "r") as f_in:
+    with open(os.path.join(C, "..", "RPI_ID"), "r") as f_in:
         RPI_ID = f_in.read().strip()
 except FileNotFoundError:
     RPI_ID = "undefined"
