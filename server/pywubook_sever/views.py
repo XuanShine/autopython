@@ -4,6 +4,10 @@ import logging
 
 from PyWubook import main
 
+@pywubook.route("/help")
+def help():
+    return "/update or /update/<int:days>"
+
 @pywubook.route("/update")
 @pywubook.route("/update/<int:days>")
 def update(days=360):

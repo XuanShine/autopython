@@ -23,7 +23,7 @@ if RPI_ID == "entry":
     pywubook_abs_path = os.path.join(C, "PyWubook")
     sys.path.append(pywubook_abs_path)
     from server.pywubook_sever import pywubook
-    app.register_blueprint(pywubook)
+    app.register_blueprint(pywubook, url_prefix="/pywubook")
 elif RPI_ID == "ring":
     pydoorbird_abs_path = os.path.join(C, "PyDoorbird")
     sys.path.append(pydoorbird_abs_path)

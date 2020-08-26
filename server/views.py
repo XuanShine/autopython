@@ -10,7 +10,7 @@ initialize_extensions(app)
 
 @app.route("/help")
 def help():
-    return """/pyaccess/help"""
+    return """/pyaccess/help \n/pywubook/help"""
 
 @app.route("/")
 def hellotest():
