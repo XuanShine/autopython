@@ -20,11 +20,11 @@ def hellotest():
 @app.route("/logs")
 def logs():
     result = ""
-    for file in os.listdir():
+    for file in os.listdir(C):
         if file.endswith(".log"):
             with open(file, "r") as f_in:
                 result += f"{file} :\n {f_in.read()}\n{'=' * 50}\n"
-    for file in os.listdir(".."):
+    for file in os.listdir(os.path.join(C, "..")):
         if file.endswith(".log"):
             with open(os.path.join("..", file), "r") as f_in:
                 result += f"{file} :\n {f_in.read()}\n{'=' * 50}\n"
