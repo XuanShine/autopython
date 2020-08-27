@@ -26,7 +26,7 @@ def logs():
                 result += f"{file} :\n {f_in.read()}\n{'=' * 50}\n"
     for file in os.listdir(os.path.join(C, "..")):
         if file.endswith(".log"):
-            with open(os.path.join("..", file), "r") as f_in:
+            with open(os.path.join(os.path.join(C, ".."), file), "r") as f_in:
                 result += f"{file} :\n {f_in.read()}\n{'=' * 50}\n"
     return result.replace("\n", "<br>")
 
