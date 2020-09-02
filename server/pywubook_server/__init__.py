@@ -45,4 +45,4 @@ def update_price_wubook():
     
     return wrapper
 
-schedule.every().day.do(update_price_wubook(), 360)
+schedule.every().hour.do(update_price_wubook(), 360)
