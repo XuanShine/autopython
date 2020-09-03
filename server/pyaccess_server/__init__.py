@@ -1,9 +1,9 @@
-from flask import Blueprint
+# from flask import Blueprint
 import schedule
 
-pyaccess = Blueprint("pyaccess", __name__, url_prefix="/pyaccess")
+# pyaccess = Blueprint("pyaccess", __name__, url_prefix="/pyaccess")
 
-from . import views
+from .views import pyaccess
 
 from PyAccess import lock_door
 

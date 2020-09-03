@@ -1,5 +1,4 @@
 from flask import Flask, escape, request
-from . import pyaccess
 
 import schedule
 import time
@@ -8,6 +7,8 @@ from threading import Thread
 from PyAccess import lock_door
 from PyAccess.lock_door import *
 
+from flask import Blueprint
+pyaccess = Blueprint("pyaccess", __name__, url_prefix="/pyaccess")
 
 # schedule
 tasks = dict()
