@@ -25,7 +25,7 @@ def price(room):
         resp = "Demander à la reception"
     if room == "all":
         code_to_room = { room_to_code[room]: room for room in room_to_code.keys() }
-        resp = {code_to_room[room]: round(prices[room][0]) for room in prices.keys() if room in code_to_room}
+        resp = {code_to_room[room]: str(round(prices[room][0])) + str(datetime.now()) for room in prices.keys() if room in code_to_room}
         resp = jsonify(resp)
     else:
         resp = round(prices[room_to_code[room]][0])
