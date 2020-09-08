@@ -27,9 +27,9 @@ schedule.every().day.at(f"22:00").do(lock_door.turn, "off", lock_door.pin_6).tag
 schedule.every().day.at(f"15:00").do(lock_door.turn, "on", lock_door.pin_6).tag("on")
 # lumière out-reception
 schedule.every().day.at(f"23:00").do(lock_door.turn, "off", lock_door.pin_3).tag("off")
-schedule.every().day.at(f"7:00").do(lock_door.turn, "on", lock_door.pin_3).tag("on")
+schedule.every().day.at(f"07:00").do(lock_door.turn, "on", lock_door.pin_3).tag("on")
 # lumière paliers
-schedule.every().day.at(f"8:00").do(lock_door.turn, "off", lock_door.pin_4).tag("off")
+schedule.every().day.at(f"08:00").do(lock_door.turn, "off", lock_door.pin_4).tag("off")
 schedule.every().day.at(f"18:00").do(lock_door.turn, "on", lock_door.pin_4).tag("on")
 # pin_7 = 21  # ch7  lumieres in-reception
 schedule.every().day.at(f"12:00").do(lock_door.turn, "off", lock_door.pin_4).tag("off")
