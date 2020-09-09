@@ -1,4 +1,5 @@
-from flask import Flask, escape, request
+from flask import Flask, escape, request, Response
+from flask.templating import render_template
 
 import schedule
 import time
@@ -8,7 +9,7 @@ from PyAccess import lock_door
 from PyAccess.lock_door import *
 
 from flask import Blueprint
-pyaccess = Blueprint("pyaccess", __name__, url_prefix="/pyaccess")
+pyaccess = Blueprint("pyaccess", __name__, url_prefix="/pyaccess", template_folder='templates', static_folder='static')
 
 # schedule
 tasks = dict()
@@ -84,3 +85,24 @@ def get_state_hour():
               "off": <int> }
     """
     return {"on": hour_on_off[0], "off": hour_on_off[1]}
+
+@pyaccess.route("/")
+def index():
+    list_relais = {
+        1: "porte entrée",
+        2: "lumières enseignes",
+        3: "lumières out-receptions (HS)",
+        4: "lumières porches (ext)",
+        5: "lumières salle petit-déj (HS)",
+        6: "lumières banque",
+        7: "lumières in-reception",
+        8: ""
+    }
+    return render_template("pyaccess_server/index.html", list_relais=list_relais)
+
+@pyaccess.route("/turn/<state>/<relai_ch>")
+def turn(state, relai_ch):
+    lock_door.turn(state, int(relai_ch))
+    resp = Response(f"{relai_ch} : {state}")
+    resp.headers['Access-Control-Allow-Origin'] = '*'
+    return resp
