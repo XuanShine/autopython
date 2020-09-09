@@ -17,12 +17,13 @@ from PyAccess import lock_door
 # pin_8 = 26  # ch8
 
 task_auto = schedule.every().hour.do(lock_door.main, 7, 22).tag("auto_door")
+task_auto.run()
 
 # porte
-schedule.every().day.at(f"03:00").do(lock_door.open_door).tag("open_door")
+schedule.every().day.at(f"07:00").do(lock_door.open_door).tag("open_door")
 schedule.every().day.at(f"22:00").do(lock_door.close_door).tag("close_door")
 # lumière enseignes
-schedule.every().day.at(f"03:00").do(lock_door.turn, "off", 2).tag("off")
+schedule.every().day.at(f"06:00").do(lock_door.turn, "off", 2).tag("off")
 schedule.every().day.at(f"19:00").do(lock_door.turn, "on", 2).tag("on")
 # lumière banque
 schedule.every().day.at(f"22:00").do(lock_door.turn, "off", 6).tag("off")
@@ -36,5 +37,3 @@ schedule.every().day.at(f"18:00").do(lock_door.turn, "on", 4).tag("on")
 # ch7  lumieres in-reception
 schedule.every().day.at(f"12:00").do(lock_door.turn, "off", 7).tag("off")
 schedule.every().day.at(f"15:00").do(lock_door.turn, "on", 7).tag("on")
-
-task_auto.run()
