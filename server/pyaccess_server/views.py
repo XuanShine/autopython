@@ -94,10 +94,10 @@ def index():
         2: "lumières enseignes",
         3: "lumières out-receptions (HS)",
         4: "lumières porches (ext)",
-        5: "lumières salle petit-déj (HS)",
+        5: "lumières in-reception",
         6: "lumières banque",
-        7: "lumières in-reception",
-        8: ""
+        7: "lumières salle petit-déj buffet",
+        8: "lumières salle petit-déj tables",
     }
     return render_template("pyaccess_server/index.html", list_relais=list_relais)
 
