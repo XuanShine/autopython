@@ -92,7 +92,7 @@ def index():
     list_relais = {
         1: "porte entrée (allumé = vérouillée, éteint = dévérouillée)",
         2: "lumières enseignes",
-        3: "lumières out-receptions (HS)",
+        3: "lumières out-receptions",
         4: "lumières porches (ext)",
         5: "lumières in-reception",
         6: "lumières banque",
