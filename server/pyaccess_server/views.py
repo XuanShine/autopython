@@ -92,8 +92,8 @@ def index():
     list_relais = {
         1: "porte entrée (allumé = vérouillée, éteint = dévérouillée)",
         2: "lumières enseignes",
-        3: "lumières out-receptions",
-        4: "lumières porches (ext)",
+        3: "lumières out-receptions (30s pour s’éteindre)",
+        4: "lumières porches (extérieur)",
         5: "lumières in-reception",
         6: "lumières banque",
         7: "lumières salle petit-déj buffet",
