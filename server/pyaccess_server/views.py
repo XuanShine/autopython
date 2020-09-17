@@ -106,6 +106,6 @@ def index():
 @pyaccess.route("/turn/<state>/<relai_ch>")
 def turn(state, relai_ch):
     lock_door.turn(state, int(relai_ch))
-    resp = Response(f"{datetime.now().strftime("%H:%M:%S")} {relai_ch} : {state}")
+    resp = Response(f"{datetime.now().strftime('%H:%M:%S')} {relai_ch} : {state}")
     resp.headers['Access-Control-Allow-Origin'] = '*'
     return resp
