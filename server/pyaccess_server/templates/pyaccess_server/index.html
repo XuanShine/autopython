@@ -18,10 +18,9 @@
   <body>
     <div class="container">
       
-      <p>À savoir: les visuels switch ne sont pas syncronisés avec l’état des relais au premier lancement de la page.</p>
       {% for relai_ch, lamp in list_relais.items() %}
       <div class="custom-control custom-switch">
-        <input type="checkbox" class="custom-control-input relai" id="ch_{{ relai_ch }}" name="{{ relai_ch }}">
+        <input type="checkbox" class="custom-control-input relai" id="ch_{{ relai_ch }}" name="{{ relai_ch }}" {% if state_relais[relai_ch] %}checked{% endif %}>
         <label class="custom-control-label" for="ch_{{ relai_ch }}">{{relai_ch}} : {{ lamp }}</label>
       </div>
       {% endfor %}

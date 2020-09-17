@@ -88,7 +88,6 @@ def get_state_hour():
 
 @pyaccess.route("/")
 def index():
-    # TODO: syncroniser les relais et le switch dans le GUI dès le chargement de la page.
     list_relais = {
         1: "porte entrée (allumé = vérouillée, éteint = dévérouillée)",
         2: "lumières enseignes",
@@ -99,7 +98,8 @@ def index():
         7: "lumières salle petit-déj buffet",
         8: "lumières salle petit-déj tables",
     }
-    return render_template("pyaccess_server/index.html", list_relais=list_relais)
+    state_relais = {relai: is_on(relai) for relai in list_relais.keys()}
+    return render_template("pyaccess_server/index.html", list_relais=list_relais, state_relais=state_relais)
 
 @pyaccess.route("/turn/<state>/<relai_ch>")
 def turn(state, relai_ch):
