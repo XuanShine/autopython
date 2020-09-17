@@ -8,7 +8,7 @@ from threading import Thread
 from PyAccess import lock_door
 from PyAccess.lock_door import *
 
-import datetime
+from datetime import datetime
 
 from flask import Blueprint
 pyaccess = Blueprint("pyaccess", __name__, url_prefix="/pyaccess", template_folder='templates', static_folder='static')
