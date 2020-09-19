@@ -27,6 +27,8 @@ schedule.clear("init")
 # check lock every hour
 task_auto = schedule.every().hour.do(lock_door.main, 7, 22).tag("auto_door")
 task_auto.run()
+# check light every night
+task_light = schedule.every().day.at("23:00").do(lock_door.init_lamp)
 
 # porte
 schedule.every().day.at(f"07:00").do(lock_door.open_door).tag("open_door")
