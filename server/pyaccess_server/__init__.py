@@ -49,8 +49,8 @@ schedule.every().day.at(f"18:00").do(lock_door.turn, "on", 4).tag("on")
 schedule.every().day.at(f"12:00").do(lock_door.turn, "off", 5).tag("off")
 schedule.every().day.at(f"15:00").do(lock_door.turn, "on", 5).tag("on")
 # ch7 lumiere petit-dej buffet
-schedule.every().day.at(f"06:00").do(lock_door.turn, "on", 7).tag("on")
+schedule.every().day.at(f"05:00").do(lock_door.turn, "on", 7).tag("on")  # 6:00
 schedule.every().day.at(f"23:00").do(lock_door.turn, "off", 7).tag("off")
 # ch8 lumiere petit-dej tables
-schedule.every().day.at(f"07:30").do(lock_door.turn, "on", 8).tag("on")
+schedule.every().day.at(f"06:30").do(lock_door.turn, "on", 8).tag("on")  # 7:30
 schedule.every().day.at(f"11:00").do(lock_door.turn, "off", 5).tag("off")
