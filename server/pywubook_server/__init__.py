@@ -45,4 +45,4 @@ def update_price_wubook():
     
     return wrapper
 
-schedule.every().hour.do(update_price_wubook(), 90)
+schedule.every(3).hours.do(update_price_wubook(), 10)
