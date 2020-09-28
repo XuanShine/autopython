@@ -1,4 +1,5 @@
 import os
+from server.pywubook_server.views import update
 C = os.path.abspath(os.path.dirname(__file__))
 
 from flask import Blueprint
@@ -45,4 +46,5 @@ def update_price_wubook():
     
     return wrapper
 
-schedule.every(3).hours.do(update_price_wubook(), 10)
+schedule.every().day.at("02:00").do(update_price_wubook(), 120)
+schedule.every(30).minutes.do(update_price_wubook(), 1)
