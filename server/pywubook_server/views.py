@@ -1,7 +1,8 @@
-from flask import Flask, escape, request
-from . import pywubook
+from flask import Flask, escape, request, Blueprint
+# from . import pywubook
 import logging
 
+pywubook = Blueprint("pywubook", __name__, url_prefix="/pywubook")
 from PyWubook import main
 
 @pywubook.route("/help")

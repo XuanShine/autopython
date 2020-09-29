@@ -4,9 +4,9 @@ C = os.path.abspath(os.path.dirname(__file__))
 
 from flask import Blueprint
 
-pywubook = Blueprint("pywubook", __name__, url_prefix="/pywubook")
+# pywubook = Blueprint("pywubook", __name__, url_prefix="/pywubook")
 
-from . import views
+from .views import pywubook
 
 import schedule, git, sys, logging
 from importlib import reload
