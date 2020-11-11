@@ -2,7 +2,7 @@ import sys, os
 import logging
 C = os.path.abspath(os.path.dirname(__file__))
 
-logging.basicConfig(filename=os.path.join(C, "run_server.log"), level=logging.DEBUG, format="%(asctime)s -- %(name)s -- %(levelname)s -- %(message)s")
+logging.basicConfig(filename=os.path.join(C, "run_server.log"), level=logging.INFO, format="%(asctime)s -- %(name)s -- %(levelname)s -- %(message)s")
 
 from server.views import app
 
@@ -34,4 +34,17 @@ elif RPI_ID == "ring":
     from server.pydoorbird_server import pydoorbird
     app.register_blueprint(pydoorbird)
 
-app.run(debug=True, host="0.0.0.0", port=5000, use_reloader=False)
+
+# app.run(debug=True, host="0.0.0.0", port=5000, use_reloader=False)
+
+
+from cheroot.wsgi import Server as WSGIServer, PathInfoDispatcher
+
+d = PathInfoDispatcher({'/': app})
+server = WSGIServer(('0.0.0.0', 5000), d)
+
+if __name__ == '__main__':
+   try:
+      server.start()
+   except KeyboardInterrupt:
+      server.stop()
