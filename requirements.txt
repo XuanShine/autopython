@@ -9,3 +9,4 @@ virtualenv==16.7.5
 flask
 flask-sqlalchemy
 gitdb2==3.0.1
+cheroot==8.4.5
