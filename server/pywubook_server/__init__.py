@@ -12,7 +12,7 @@ import schedule, git, sys, logging
 from importlib import reload
 from git.exc import GitCommandError
 from datetime import datetime, timedelta
-# from PyWubook.main import main
+from PyWubook.HotelRates import scrape
 
 
 def update_price_wubook():
@@ -46,5 +46,9 @@ def update_price_wubook():
     
     return wrapper
 
-schedule.every().day.at("02:00").do(update_price_wubook(), 120)
-schedule.every(30).minutes.do(update_price_wubook(), 1)
+
+schedule.every().day.at("01:00").do(scrape.main, 31*4)
+schedule.every().day.at("02:00").do(update_price_wubook(), 30*4)
+
+schedule.every(30).minutes.do(scrape.main, 7)
+schedule.every(30).minutes.do(update_price_wubook(), 7)
