@@ -47,8 +47,13 @@ def update_price_wubook():
     return wrapper
 
 
-schedule.every().day.at("01:00").do(scrape.main, 31*4)
-schedule.every().day.at("02:00").do(update_price_wubook(), 30*4)
+def update_price_first_time_of_the_day():
+    scrape.main(31*4)
+    update_price_wubook()(30*4)
+
+schedule.every().day.at("01:00").do(update_price_first_time_of_the_day)
+# schedule.every().day.at("01:00").do(scrape.main, 31*4)
+# schedule.every().day.at("02:00").do(update_price_wubook(), 30*4)
 
 schedule.every(30).minutes.do(scrape.main, 7)
 schedule.every(30).minutes.do(update_price_wubook(), 7)
