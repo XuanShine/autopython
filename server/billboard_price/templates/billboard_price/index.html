@@ -123,9 +123,9 @@ h3 {
                     $.each(data, function(room_id, price) {
                         $("#" + room_id).text(price);
                     });
-                    setTimeout(update_price, 60 * 60 * 1000);
+                    setTimeout(update_price, 20 * 60 * 1000);
                 }).fail(function(jqXHR) {
-                    setTimeout(update_price, 30 * 60 * 1000);
+                    setTimeout(update_price, 20 * 60 * 1000);
                 });
             })();  // lance la fonction update_price
         });
