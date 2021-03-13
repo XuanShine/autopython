@@ -2,7 +2,7 @@ import sys, os
 import logging
 C = os.path.abspath(os.path.dirname(__file__))
 
-logging.basicConfig(filename=os.path.join(C, "run_server.log"), level=logging.INFO, format="%(asctime)s -- %(name)s -- %(levelname)s -- %(message)s")
+logging.basicConfig(filename=os.path.join(C, "run_server.log"), level=logging.DEBUG, format="%(asctime)s -- %(name)s -- %(levelname)s -- %(message)s")
 
 from server.views import app
 

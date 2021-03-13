@@ -1,0 +1,7 @@
+*.log
+/.pytest_cache
+/.vscode
+/__pycache__
+*.pyc
+/venv
+/Pricelytical0.5-master/*
