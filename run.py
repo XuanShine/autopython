@@ -1,6 +1,7 @@
 import sys, os
 import logging
 C = os.path.abspath(os.path.dirname(__file__))
+sys.path.append(C)
 
 logging.basicConfig(filename=os.path.join(C, "run_server.log"), level=logging.DEBUG, format="%(asctime)s -- %(name)s -- %(levelname)s -- %(message)s")
 
