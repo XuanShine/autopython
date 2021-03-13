@@ -1,3 +1,7 @@
+### DEPRECATED OUTDATED ###
+Project is separate in profit of others small web server for more independance and robustest.
+schedule was replace by automatisme of home assistant.
+
 # You can start the automatism by:
 source venv/bin/activate
 nohup python autoschedule.py &
