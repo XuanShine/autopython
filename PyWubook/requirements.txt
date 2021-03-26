@@ -32,7 +32,7 @@ py==1.8.1
 Pygments==2.7.1
 pyparsing==2.4.6
 pytest==5.4.1
-PyYAML==5.3.1
+PyYAML==5.4
 requests==2.24.0
 rfc3986==1.4.0
 selectorlib==0.16.0
